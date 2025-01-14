@@ -20,7 +20,6 @@ const userSchema = new Schema(
     },
     username: {
       type: String,
-      unique: true,
     },
     token: {
       type: String,
@@ -51,6 +50,10 @@ const userSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    initBalance: {
+      type: Boolean,
+      default: false,
+    },    
     avatarColor: {
       type: String,
       default: generateRandomHexColor
@@ -58,6 +61,8 @@ const userSchema = new Schema(
   },
   { versionKey: false, timestamps: true }
 );
+
+
 
 userSchema.methods.setPassword = async function (password) {
   this.password = await bCrypt.hash(password, 10);

@@ -4,26 +4,7 @@ import {
 } from "../service/transaction-service.js";
 import User from "../models/user.js";
 import Transaction from "../models/transaction.js";
-import { createMonthStats } from "./transactionsHelpers.js";
-
-const incomeCategories = [
-  "Salary",
-  "Add. Income",
-];
-
-const expenseCategories = [
-  "Products",
-  "Alcohol",
-  "Entertainment",
-  "Health",
-  "Transport",
-  "Housing",
-  "Technique",
-  "Communal, communication",
-  "Sports, hobbies",
-  "Education",
-  "Other"
-];
+import { createMonthStats, incomeCategories, expenseCategories } from "../helpers/transactions.js";
 
 export const addTransaction = async (req, res, next) => {
   const { description, amount, date, category, typeOfTransaction } = req.body;

@@ -27,6 +27,8 @@ app.use("/api/user", usersRouter);
 import transactionsRouter from "./routes/api/transaction.js";
 app.use("/api/transaction", transactionsRouter);
 
+
+
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
 
@@ -42,6 +44,25 @@ app.use((err, req, res, next) => {
       message: err.message,
     });
   }
+  if (err.name === "IncorrectData") {
+    return res.status(400).json({
+      message: err.message,
+    });
+  }
+  if (err.name === "OcupatedEmail") {
+    return res.status(409).json({
+      message: err.message,
+    });
+  }
+  if (err.name === "IncorrectCredentials") {
+    return res.status(401).json({
+      message: err.message,
+    });
+  }
+
+
+
+  
   res.status(500).json({
     message: err.message || `Internal Server Error. Something broke!`,
   });
