@@ -124,12 +124,19 @@ export const getAllUserInfo = async (req, res, next) => {
     const expensesStats = createMonthStats(expenses);
 
     res.status(200).json({
+      totalIncome: user.totalIncome,
+      totalExpense: user.totalExpense,
+      username: user.username,
+      refreshToken: user.refreshToken,
+      initBalance: user.initBalance,
+      avatar: user.avatarColor,
+      isVerified: user.isVerified,
       id: user._id,
       balance: user.newBalance,
       incomeStats: incomeStats,
       expensesStats: expensesStats,
       income: income,
-      expenses: expenses
+      expenses: expenses,
     })
 
   }catch (error) {
